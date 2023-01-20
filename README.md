@@ -6,6 +6,8 @@ This program contains commonly used libraries GLFW, GLAD, and STB.
 
 Requires git and CMake 3.1 or later to build.
 
+<img src="example.gif" width="720" height="480">
+
 ## Testing Environment
 * OS: Arch Linux
 * Kernel: x86_64 6.1.6-zen1-2-zen
