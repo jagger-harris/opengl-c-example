@@ -79,21 +79,21 @@ void shader_check_errors(unsigned int *shader, unsigned int type) {
 }
 
 void shader_set_bool(shader *shader, const char *name, bool value) {
-  glUniform1i(glGetUniformLocation((GLuint)shader->id, (GLchar)name),
+  glUniform1i(glGetUniformLocation((GLuint)shader->id, name),
               (GLint)value);
 }
 
 void shader_set_int(shader *shader, const char *name, int value) {
-  glUniform1i(glGetUniformLocation((GLuint)shader->id, (GLchar)name),
+  glUniform1i(glGetUniformLocation((GLuint)shader->id, name),
               (GLint)value);
 }
 
 void shader_set_float(shader *shader, const char *name, float value) {
-  glUniform1f(glGetUniformLocation((GLuint)shader->id, (GLchar)name),
+  glUniform1f(glGetUniformLocation((GLuint)shader->id, name),
               (GLfloat)value);
 }
 
 void shader_set_mat4(shader *shader, const char *name, mat4 *value) {
-  glUniformMatrix4fv(glGetUniformLocation((GLuint)shader->id, (GLchar)name), 1,
+  glUniformMatrix4fv(glGetUniformLocation((GLuint)shader->id, name), 1,
                      GL_FALSE, (const GLfloat *)value);
 }
