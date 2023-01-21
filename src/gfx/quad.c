@@ -2,10 +2,10 @@
 
 #include "glad/gl.h"
 
-quad quad_create(void) {
+quad quad_create() {
   quad quad;
   
-  /* Rectangle vertices */
+  /* Quad vertices */
   static const float vertices[] = {
     // Positions(x, y, z)   // Colors           // Texture coords
     -0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
@@ -14,7 +14,7 @@ quad quad_create(void) {
     0.5f, -0.5f, 0.0f,      1.0f, 1.0f, 0.0f,   1.0f, 0.0f
   };
 
-  /* Rectangle indices */
+  /* Quad indices */
   static const unsigned int indices[] = {
     0, 1, 2, // First triangle
     0, 2, 3  // Second triangle

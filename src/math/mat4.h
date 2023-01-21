@@ -14,7 +14,7 @@ typedef struct mat4 {
 
 void mat4_print(mat4 mat4);
 mat4 mat4_create_from_values(float values[MAT4_SIZE]);
-mat4 mat4_create_same_value(float values);
+mat4 mat4_create_same_value(float value);
 mat4 mat4_create_identity();
 mat4 mat4_multiply(mat4 mat4_a, mat4 mat4_b);
 mat4 mat4_scale(mat4 transform, vec3 scale);

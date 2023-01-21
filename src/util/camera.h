@@ -26,15 +26,9 @@ typedef struct camera {
 camera *camera_create(float pos_x, float pos_y, float pos_z, float yaw,
                       float pitch, float speed, float sensitivity,
                       float scr_width, float scr_height);
-
 void camera_destroy(camera *camera);
-
 mat4 camera_lookat(camera *camera);
-
 void camera_keyboard_input(camera *camera, direction direction, float velocity);
-
 void camera_mouse_input(camera *camera, float offset_x, float offset_y);
-
-void camera_update(camera *camera);
 
 #endif /* CAMERA_H */

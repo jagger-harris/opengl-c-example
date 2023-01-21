@@ -31,7 +31,7 @@ static const float vertices[] = {
     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
     -0.5f, 0.5f,  0.5f,  0.0f, 0.0f, -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f};
 
-cube cube_create(void);
+cube cube_create();
 void cube_destroy(cube cube);
 void cube_draw(cube cube);
 

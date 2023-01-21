@@ -4,6 +4,8 @@
 
 #include <math.h>
 
+void camera_update(camera *camera);
+
 camera *camera_create(float pos_x, float pos_y, float pos_z, float yaw,
                       float pitch, float speed, float sensitivity,
                       float scr_width, float scr_height) {

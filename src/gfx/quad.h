@@ -7,7 +7,7 @@ typedef struct quad {
   unsigned int ebo;
 } quad;
 
-quad quad_create(void);
+quad quad_create();
 void quad_destroy(quad quad);
 void quad_draw(quad quad);
 

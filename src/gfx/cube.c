@@ -2,7 +2,7 @@
 
 #include "glad/gl.h"
 
-cube cube_create(void) {
+cube cube_create() {
   cube cube;
 
   /* Generate array/buffer objects */
