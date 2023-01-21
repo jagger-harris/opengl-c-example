@@ -7,7 +7,7 @@ void renderer_clear(float red, float green, float blue, float alpha) {
   glClearColor((GLfloat)red, (GLfloat)green, (GLfloat)blue, (GLfloat)alpha);
 }
 
-void renderer_use_shader(shader shader) { glUseProgram((GLint)shader.id); }
+void renderer_use_shader(shader *shader) { glUseProgram((GLuint)shader->id); }
 
 void renderer_framebuffer_size_callback(GLFWwindow *window, int width,
                                         int height) {

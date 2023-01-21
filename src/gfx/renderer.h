@@ -6,7 +6,7 @@
 #include "shader.h"
 
 void renderer_clear(float red, float green, float blue, float alpha);
-void renderer_use_shader(shader shader);
+void renderer_use_shader(shader *shader);
 void renderer_framebuffer_size_callback(GLFWwindow *window, int width,
                                         int height);
 void renderer_settings();

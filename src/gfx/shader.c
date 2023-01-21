@@ -20,12 +20,12 @@ shader shader_create(const char *vertex_shader_file_path,
   vertex_shader = glCreateShader(GL_VERTEX_SHADER);
   glShaderSource(vertex_shader, 1, &vertex_shader_code, NULL);
   glCompileShader(vertex_shader);
-  shader_check_errors(vertex_shader, GL_VERTEX_SHADER);
+  shader_check_errors(&vertex_shader, GL_VERTEX_SHADER);
 
   fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragment_shader, 1, &fragment_shader_code, NULL);
   glCompileShader(fragment_shader);
-  shader_check_errors(fragment_shader, GL_FRAGMENT_SHADER);
+  shader_check_errors(&fragment_shader, GL_FRAGMENT_SHADER);
 
   shader.id = glCreateProgram();
   glAttachShader(shader.id, vertex_shader);
@@ -58,14 +58,14 @@ char *shader_read_file(const char *file_path) {
   return code;
 }
 
-void shader_check_errors(unsigned int shader, unsigned int type) {
+void shader_check_errors(unsigned int *shader, unsigned int type) {
   GLint success;
   char info_log[MAX_ERROR_LOG_BYTES];
 
-  glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+  glGetShaderiv(*shader, GL_COMPILE_STATUS, &success);
 
   if (!success) {
-    glGetShaderInfoLog(shader, MAX_ERROR_LOG_BYTES, NULL, info_log);
+    glGetShaderInfoLog(*shader, MAX_ERROR_LOG_BYTES, NULL, info_log);
     fprintf(stderr, "ERROR_SHADER_FAILED_TO_COMPILE_SHADER_");
 
     if (type == GL_VERTEX_SHADER) {
@@ -78,19 +78,22 @@ void shader_check_errors(unsigned int shader, unsigned int type) {
   }
 }
 
-void shader_set_bool(shader shader, const char *name, bool value) {
-  glUniform1i(glGetUniformLocation(shader.id, name), (GLint)value);
+void shader_set_bool(shader *shader, const char *name, bool value) {
+  glUniform1i(glGetUniformLocation((GLuint)shader->id, (GLchar)name),
+              (GLint)value);
 }
 
-void shader_set_int(shader shader, const char *name, int value) {
-  glUniform1i(glGetUniformLocation(shader.id, name), (GLint)value);
+void shader_set_int(shader *shader, const char *name, int value) {
+  glUniform1i(glGetUniformLocation((GLuint)shader->id, (GLchar)name),
+              (GLint)value);
 }
 
-void shader_set_float(shader shader, const char *name, float value) {
-  glUniform1f(glGetUniformLocation(shader.id, name), (GLfloat)value);
+void shader_set_float(shader *shader, const char *name, float value) {
+  glUniform1f(glGetUniformLocation((GLuint)shader->id, (GLchar)name),
+              (GLfloat)value);
 }
 
-void shader_set_mat4(shader shader, const char *name, mat4 *value) {
-  glUniformMatrix4fv(glGetUniformLocation(shader.id, name), 1, GL_FALSE,
-                     (const GLfloat *)value);
+void shader_set_mat4(shader *shader, const char *name, mat4 *value) {
+  glUniformMatrix4fv(glGetUniformLocation((GLuint)shader->id, (GLchar)name), 1,
+                     GL_FALSE, (const GLfloat *)value);
 }

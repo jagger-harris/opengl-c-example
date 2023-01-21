@@ -33,16 +33,11 @@ void app_destroy(app *app) {
   camera_destroy(app->camera);
 }
 
-/**
- * @brief Main loop and general app functionalities
- *
- * @param app App which to run
- */
+/* Main app launch and render loop */
 void app_run(app *app) {
   GLFWwindow *window = app->window;
-  shader shader =
-      shader_create("data/shaders/vertex.glsl", "data/shaders/fragment.glsl");
-  quad quad = quad_create();
+  shader shader_cube = shader_create("data/shaders/cube_vertex.glsl",
+                                     "data/shaders/cube_fragment.glsl");
   cube cube = cube_create();
   texture container =
       texture_create("data/assets/images/container.jpg", GL_RGB);
@@ -52,7 +47,7 @@ void app_run(app *app) {
   /* Renderer settings */
   renderer_settings();
 
-  /* App loop */
+  /* Render loop */
   while (!glfwWindowShouldClose(window)) {
     /* Timing */
     float current_frame = glfwGetTime();
@@ -65,21 +60,22 @@ void app_run(app *app) {
 
     texture_use(container, GL_TEXTURE0);
     texture_use(awesomeface, GL_TEXTURE1);
-    shader_set_int(shader, "texture1", 0);
-    shader_set_int(shader, "texture2", 1);
-    renderer_use_shader(shader);
+    shader_set_int(&shader_cube, "texture1", 0);
+    shader_set_int(&shader_cube, "texture2", 1);
+    renderer_use_shader(&shader_cube);
 
-    /* Transformations */
+    /* Camera transformations*/
     mat4 view = camera_lookat(app->camera);
     mat4 projection = mat4_perspective(
         45.0f, (float)app->width / (float)app->height, 0.1f, 100.0f);
+    shader_set_mat4(&shader_cube, "view", &view);
+    shader_set_mat4(&shader_cube, "projection", &projection);
 
-    shader_set_mat4(shader, "view", &view);
-    shader_set_mat4(shader, "projection", &projection);
-
+    /* Cube transformations */
     mat4 model = mat4_create_identity();
     model = mat4_translate(model, vec3_create_from_values(0.0f, 0.0f, 0.0f));
-    shader_set_mat4(shader, "model", &model);
+    model = mat4_rotate(model, glfwGetTime(), vec3_create_from_values(1.0f, 0.0f, 1.0f));
+    shader_set_mat4(&shader_cube, "model", &model);
     cube_draw(cube);
 
     glfwSwapBuffers(window);

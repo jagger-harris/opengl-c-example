@@ -21,7 +21,6 @@ app app_create(camera *camera, unsigned int width, unsigned int height,
                const char *title, bool vsync);
 
 void app_destroy(app *app);
-
 void app_run(app *app);
 
 #endif /* APP_H */
