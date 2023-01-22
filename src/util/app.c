@@ -37,7 +37,7 @@ void app_destroy(app *app) {
 void app_run(app *app) {
   GLFWwindow *window = app->window;
   shader shader_cube = shader_create("data/shaders/cube_vertex.glsl",
-                                     "data/shaders/cube_fragment.glsl");
+                                     "data/shaders/cube_fragment.glsl");                            
   cube cube = cube_create();
   texture container =
       texture_create("data/assets/images/container.jpg", GL_RGB);

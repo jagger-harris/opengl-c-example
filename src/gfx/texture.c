@@ -9,6 +9,7 @@
 
 texture texture_create(const char *texture_path, unsigned int color_mode) {
   texture texture;
+  stbi_set_flip_vertically_on_load(true);
   unsigned char *data = stbi_load(texture_path, &texture.width, &texture.height,
                                   &texture.nr_channels, 0);
 

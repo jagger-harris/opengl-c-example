@@ -15,6 +15,8 @@ void renderer_framebuffer_size_callback(GLFWwindow *window, int width,
 }
 
 void renderer_settings() {
-  stbi_set_flip_vertically_on_load(true);
   glEnable(GL_DEPTH_TEST);
+  glFrontFace(GL_CW);
+	glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE);
 }

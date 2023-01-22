@@ -4,7 +4,7 @@
 
 quad quad_create() {
   quad quad;
-  
+
   /* Quad vertices */
   static const float vertices[] = {
     // Positions(x, y, z)   // Colors           // Texture coords
@@ -16,8 +16,8 @@ quad quad_create() {
 
   /* Quad indices */
   static const unsigned int indices[] = {
-    0, 1, 2, // First triangle
-    0, 2, 3  // Second triangle
+      0, 1, 2, // First triangle
+      0, 2, 3  // Second triangle
   };
 
   /* Generate array/buffer objects */
