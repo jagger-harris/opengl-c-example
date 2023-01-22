@@ -12,5 +12,4 @@ uniform float opacity;
 
 void main() {
   color = mix(texture(texture1, texture_coords_out), texture(texture2, texture_coords_out), 0.2);
- // color = vec4(color_out, 1.0f);
 }
