@@ -74,7 +74,7 @@ void app_run(app *app) {
     /* Cube transformations */
     mat4 model = mat4_create_identity();
     model = mat4_translate(model, vec3_create_from_values(0.0f, 0.0f, 0.0f));
-    model = mat4_rotate(model, glfwGetTime(), vec3_create_from_values(1.0f, 0.0f, 1.0f));
+    // model = mat4_rotate(model, glfwGetTime(), vec3_create_from_values(1.0f, 0.0f, 1.0f));
     shader_set_mat4(&shader_cube, "model", &model);
     cube_draw(cube);
 
