@@ -17,8 +17,8 @@ typedef struct {
   float delta_time;
 } app;
 
-app app_create(camera *camera, unsigned int width, unsigned int height,
-               const char *title, bool vsync);
+app app_create(unsigned int width, unsigned int height, const char *title,
+               bool vsync);
 
 void app_destroy(app *app);
 void app_run(app *app);

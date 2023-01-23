@@ -14,12 +14,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-app app_create(camera *camera, unsigned int width, unsigned int height,
-               const char *title, bool vsync) {
+app app_create(unsigned int width, unsigned int height, const char *title,
+               bool vsync) {
   app app;
 
   app.window = window_create(width, height, title, vsync);
-  app.camera = camera;
+  app.camera =
+      camera_create(0.0f, 0.0f, 3.0f, -90.0f, 0.0f, 2.5f, 0.1f, width, height);
   app.width = width;
   app.height = height;
   app.title = title;
@@ -37,7 +38,7 @@ void app_destroy(app *app) {
 void app_run(app *app) {
   GLFWwindow *window = app->window;
   shader shader_cube = shader_create("data/shaders/cube_vertex.glsl",
-                                     "data/shaders/cube_fragment.glsl");                            
+                                     "data/shaders/cube_fragment.glsl");
   cube cube = cube_create();
   texture container =
       texture_create("data/assets/images/container.jpg", GL_RGB);
@@ -74,7 +75,6 @@ void app_run(app *app) {
     /* Cube transformations */
     mat4 model = mat4_create_identity();
     model = mat4_translate(model, vec3_create_from_values(0.0f, 0.0f, 0.0f));
-    // model = mat4_rotate(model, glfwGetTime(), vec3_create_from_values(1.0f, 0.0f, 1.0f));
     shader_set_mat4(&shader_cube, "model", &model);
     cube_draw(cube);
 

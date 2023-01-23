@@ -1,6 +1,5 @@
 #include "window.h"
 #include "gfx/renderer.h"
-#include "input.h"
 
 #include <stdio.h>
 
