@@ -47,6 +47,12 @@ void input_handle_mouse(app *app) {
 
   glfwGetCursorPos(app->window, &pos_x, &pos_y);
 
+  if (camera->first_mouse) {
+    camera->last_x = pos_x;
+    camera->last_y = pos_y;
+    camera->first_mouse = false;
+  }
+
   offset_x = (float)pos_x - camera->last_x;
   offset_y = camera->last_y - (float)pos_y;
 

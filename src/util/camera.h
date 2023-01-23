@@ -21,6 +21,7 @@ typedef struct camera {
   float sensitivity;
   float last_x;
   float last_y;
+  bool first_mouse;
 } camera;
 
 camera *camera_create(float pos_x, float pos_y, float pos_z, float yaw,

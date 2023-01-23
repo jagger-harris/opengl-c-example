@@ -21,6 +21,7 @@ camera *camera_create(float pos_x, float pos_y, float pos_z, float yaw,
   camera->sensitivity = sensitivity;
   camera->last_x = scr_width * 0.5;
   camera->last_y = scr_height * 0.5;
+  camera->first_mouse = true;
 
   camera_update(camera);
 

@@ -64,7 +64,7 @@ void app_run(app *app) {
     shader_set_int(&shader_cube, "texture2", 1);
     renderer_use_shader(&shader_cube);
 
-    /* Camera transformations*/
+    /* Camera transformations */
     mat4 view = camera_lookat(app->camera);
     mat4 projection = mat4_perspective(
         45.0f, (float)app->width / (float)app->height, 0.1f, 100.0f);
