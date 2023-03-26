@@ -8,6 +8,7 @@
 #include "input.h"
 #include "math/mat4.h"
 #include "math/math.h"
+#include "math/quaternion.h"
 #include "math/vec3.h"
 #include "window.h"
 
@@ -74,11 +75,17 @@ void app_run(app *app) {
 
     /* Cube transformations */
     mat4 model = mat4_create_identity();
-    model = mat4_translate(model, vec3_create_from_values(0.0f, 0.0f, 0.0f));
+    model = mat4_translate(model, vec3_create_from_values(1.0f, 1.0f, 1.0f));
+    /*quat q = axisangle_to_quat(
+        glfwGetTime(), vec3_create_from_values(0.0f, 1.0f, 0.0f));
+    model = quat_to_mat4(q);*/
+
     shader_set_mat4(&shader_cube, "model", &model);
-    cube_draw(cube);
+    cube_draw(&cube);
 
     glfwSwapBuffers(window);
     glfwPollEvents();
   }
+
+  cube_destroy(&cube);
 }
