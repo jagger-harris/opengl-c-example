@@ -1,29 +1,34 @@
-# OpenGL C Example Program
+# OpenGL C Example
 
-OpenGL C Example Program is a simple program demonstrating basic modern, core OpenGL 3.3 with CMake 3.1 using the C11 programming language.
+OpenGL C Example is a simple program demonstrating basic modern, core OpenGL 3.3 with CMake 3.5 using the C89 programming language.
 
 This program contains commonly used libraries GLFW, GLAD, and STB.
 
-Requires git and CMake 3.1 or later to build.
+Requires git and CMake 3.5 or later to build.
 
 <img src="example.gif" width="720" height="480">
 
-## Testing Environment
-* OS: Arch Linux
-* Kernel: x86_64 6.1.6-zen1-2-zen
-
 ## Dependencies
-* CMake 3.1 or greater
+* CMake 3.5 or greater
 * OpenGL 3.3 or higher supported graphics card and drivers
-* C11 compiler
+* C89 compiler
 
 ## Compiling and Running
-
+Clone the repository:
 ```shell
-git clone https://github.com/jagger-harris/opengl-c-example-program.git
-cd opengl-c-example-program
+git clone https://github.com/jagger-harris/opengl-c-example.git
+cd opengl-c-example
 git submodule init
 git submodule update
+```
+
+Using provided build script:
+```shell
+./build.sh build run
+```
+
+Without build script:
+```shell
 mkdir build
 cd build
 cmake ..
@@ -32,7 +37,7 @@ make
 ```
 
 ## Contributing
-This is a personal project. Contributions will not be accepted.
+See the contributing guidelines [here](docs/CONTRIBUTING.md).
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+- [ISC](https://choosealicense.com/licenses/isc/)

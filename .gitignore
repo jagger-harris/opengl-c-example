@@ -1,15 +1,15 @@
 # Editors
 .vscode
 
-# Build and build scripts
+# Build
 build
-build.sh
 
 # Documentation
 html
 latex
 
 # Other
+.cache
 other
 
 # Prerequisites

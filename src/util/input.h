@@ -1,9 +1,8 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include "GLFW/glfw3.h"
-#include "app.h"
+#include "window.h"
 
-void input_handle(app *app);
+void input_handle(window *window);
 
 #endif /* INPUT_H */

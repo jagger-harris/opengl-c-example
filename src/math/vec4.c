@@ -22,11 +22,11 @@ vec4 vec4_create_from_values(float x, float y, float z, float w) {
   return vec4;
 }
 
-float vec4_dot(vec4 vec3_a, vec4 vec3_b) {
+float vec4_dot(vec4 *vec4_a, vec4 *vec4_b) {
   float dot;
 
-  dot = (vec3_a.x * vec3_b.x) + (vec3_a.y * vec3_b.y) + (vec3_a.z * vec3_b.z) +
-        (vec3_a.w * vec3_b.w);
+  dot = (vec4_a->x * vec4_b->x) + (vec4_a->y * vec4_b->y) +
+        (vec4_a->z * vec4_b->z) + (vec4_a->w * vec4_b->w);
 
   return dot;
 }

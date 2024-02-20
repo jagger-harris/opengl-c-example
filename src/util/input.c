@@ -1,63 +1,42 @@
 #include "input.h"
-#include "math/math.h"
 
-#include <math.h>
-#include <stdbool.h>
+void input_handle_keys(window *window) {
+  camera *camera = &window->camera;
+  GLFWwindow *glfw_window = window->glfw_window;
 
-void input_handle_keys(app *app);
-void input_handle_mouse(app *app);
+  if (glfwGetKey(glfw_window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+    glfwSetWindowShouldClose(glfw_window, 1);
+  }
 
-void input_handle(app *app) {
-  input_handle_keys(app);
-  input_handle_mouse(app);
+  camera_process_key_input(camera, glfw_window, window->delta_time);
 }
 
-void input_handle_keys(app *app) {
-  GLFWwindow *window = app->window;
-  camera *camera = app->camera;
-  float velocity = camera->speed * app->delta_time;
-
-  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-    glfwSetWindowShouldClose(window, true);
-  }
-
-  if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-    camera_keyboard_input(camera, FORWARD, velocity);
-  }
-
-  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-    camera_keyboard_input(camera, BACKWARD, velocity);
-  }
-
-  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-    camera_keyboard_input(camera, LEFT, velocity);
-  }
-
-  if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-    camera_keyboard_input(camera, RIGHT, velocity);
-  }
-}
-
-void input_handle_mouse(app *app) {
-  camera *camera = app->camera;
+void input_handle_mouse(window *window) {
+  camera *camera = &window->camera;
+  GLFWwindow *glfw_window = window->glfw_window;
   double pos_x;
   double pos_y;
   float offset_x;
   float offset_y;
 
-  glfwGetCursorPos(app->window, &pos_x, &pos_y);
+  glfwGetCursorPos(glfw_window, &pos_x, &pos_y);
 
-  if (camera->first_mouse) {
-    camera->last_x = pos_x;
-    camera->last_y = pos_y;
-    camera->first_mouse = false;
+  if (window->mouse_first) {
+    window->mouse_last_x = pos_x;
+    window->mouse_last_y = pos_y;
+    window->mouse_first = 0;
   }
 
-  offset_x = (float)pos_x - camera->last_x;
-  offset_y = camera->last_y - (float)pos_y;
+  offset_x = (float)pos_x - window->mouse_last_x;
+  offset_y = window->mouse_last_y - (float)pos_y;
 
-  camera->last_x = (float)pos_x;
-  camera->last_y = (float)pos_y;
+  window->mouse_last_x = (float)pos_x;
+  window->mouse_last_y = (float)pos_y;
 
-  camera_mouse_input(camera, offset_x, offset_y);
+  camera_process_mouse_movement(camera, offset_x, offset_y);
+}
+
+void input_handle(window *window) {
+  input_handle_keys(window);
+  input_handle_mouse(window);
 }

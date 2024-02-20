@@ -1,19 +1,23 @@
-#include "util/app.h"
-#include "util/camera.h"
+#include "util/input.h"
+#include "graphics/renderer.h"
+#include "util/window.h"
+#include <GLFW/glfw3.h>
 
-#include <stdbool.h>
-#include <stdio.h>
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 720
+#define WINDOW_VSYNC 1
+#define WINDOW_TITLE "OpenGL Window"
 
-#define APP_WIDTH 1280
-#define APP_HEIGHT 720
-#define APP_TITLE "OpenGL Window"
-#define APP_VSYNC true
+int main(int argc, char **argv) {
+  window window = window_create(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_VSYNC, WINDOW_TITLE);
+  renderer renderer = renderer_create();
 
-int main() {
-  app app = app_create(APP_WIDTH, APP_HEIGHT, APP_TITLE, APP_VSYNC);
-
-  app_run(&app);
-  app_destroy(&app);
+  while (!glfwWindowShouldClose(window.glfw_window)) {
+    renderer_clear(&renderer);
+    renderer_draw(&renderer, &window);
+    window_process(&window);
+    input_handle(&window);
+  }
 
   return 0;
 }
