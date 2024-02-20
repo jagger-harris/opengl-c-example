@@ -6,7 +6,7 @@ This program contains commonly used libraries GLFW, GLAD, and STB.
 
 Requires git and CMake 3.5 or later to build.
 
-<img src="example.gif" width="720" height="480">
+<img alt="opengl-c-example.gif" src="https://github.com/jagger-harris/opengl-c-example/assets/78388435/fe03cc18-cf6e-4fdf-87ed-2fa5580d4aa0" width="640" height="360">
 
 ## Dependencies
 * CMake 3.5 or greater
