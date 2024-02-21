@@ -67,8 +67,8 @@ void cube_destroy(cube *cube) {
 }
 
 void cube_draw(cube *cube, camera *camera) {
-  mat4 model = mat4_create_identity();
   mat4 mvp = mat4_create_identity();
+  mat4 model = mat4_create_identity();
 
   model = mat4_scale(&model, &cube->scale);
   model = mat4_rotate(&model, &cube->rotation_axis, cube->rotation_degrees);

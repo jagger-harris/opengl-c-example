@@ -72,8 +72,8 @@ void triangle_destroy(triangle *triangle) {
 }
 
 void triangle_draw(triangle *triangle, camera *camera) {
-  mat4 model = mat4_create_identity();
   mat4 mvp = mat4_create_identity();
+  mat4 model = mat4_create_identity();
 
   model = mat4_scale(&model, &triangle->scale);
   model =
