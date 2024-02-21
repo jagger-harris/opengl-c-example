@@ -1,5 +1,4 @@
 #include "quad.h"
-#include "gldebug.h"
 
 quad quad_create(shader *shader, texture *texture, float pos_x, float pos_y,
                  float pos_z, float rotation) {
@@ -82,8 +81,8 @@ void quad_destroy(quad *quad) {
 }
 
 void quad_draw(quad *quad, camera *camera) {
-  mat4 model = mat4_create_identity();
   mat4 mvp = mat4_create_identity();
+  mat4 model = mat4_create_identity();
 
   model = mat4_scale(&model, &quad->scale);
   model = mat4_rotate(&model, &quad->rotation_axis, quad->rotation_degrees);
