@@ -50,27 +50,27 @@ camera camera_create(float pos_x, float pos_y, float pos_z, float width,
 
 void camera_process_key_input(camera *camera, GLFWwindow *window,
                               float delta_time) {
-  vec3 multiplied_velocity;
-  float velocity = camera->speed * delta_time;
+  vec3 velocity;
+  float speed = camera->speed * delta_time;
 
   if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) {
-    multiplied_velocity = vec3_multiply_num_on_vec3(velocity, &camera->front);
-    camera->position = vec3_add(&camera->position, &multiplied_velocity);
+    velocity = vec3_multiply_num_on_vec3(speed, &camera->front);
+    camera->position = vec3_add(&camera->position, &velocity);
   }
 
   if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) {
-    multiplied_velocity = vec3_multiply_num_on_vec3(velocity, &camera->front);
-    camera->position = vec3_subtract(&camera->position, &multiplied_velocity);
+    velocity = vec3_multiply_num_on_vec3(speed, &camera->front);
+    camera->position = vec3_subtract(&camera->position, &velocity);
   }
 
   if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) {
-    multiplied_velocity = vec3_multiply_num_on_vec3(velocity, &camera->right);
-    camera->position = vec3_subtract(&camera->position, &multiplied_velocity);
+    velocity = vec3_multiply_num_on_vec3(speed, &camera->right);
+    camera->position = vec3_subtract(&camera->position, &velocity);
   }
 
   if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) {
-    multiplied_velocity = vec3_multiply_num_on_vec3(velocity, &camera->right);
-    camera->position = vec3_add(&camera->position, &multiplied_velocity);
+    velocity = vec3_multiply_num_on_vec3(speed, &camera->right);
+    camera->position = vec3_add(&camera->position, &velocity);
   }
 }
 
